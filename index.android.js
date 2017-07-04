@@ -8,46 +8,40 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View
+  Text
 } from 'react-native';
 
+import { Col, Row, Grid } from "react-native-easy-grid";
+
 export default class CricketTrainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            numbers: [20, 18, 19, 17, 16, 15, 'Bullseye'],
+            actions: ['Miss', 'Miss x3', 'Undo']
+        };
+    }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+        <Grid>
+          <Col size={3}>
+            {this.displayAsRows(this.state.numbers)}
+          </Col>
+          <Col size={1}>
+            {this.displayAsRows(this.state.actions)}
+          </Col>
+        </Grid>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    displayAsRows(theArray) {
+        let len = theArray.length;
+        let rows = [];
+        for(let i = 0; i < len; i++) {
+            rows.push(<Row key={i}><Text>{theArray[i]}</Text></Row>);
+        }
+        return rows;
+    }
+};
 
 AppRegistry.registerComponent('CricketTrainer', () => CricketTrainer);
