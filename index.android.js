@@ -14,13 +14,31 @@ import {
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 
-export default class SingleTarget extends Component {
+class SingleTarget extends Component {
     constructor(props) {
         super(props);
     }
 
-    render()
-};
+    render() {
+        return <Grid>
+            <Col size={3}>
+                <Button
+                    onPress={this.props.callback}
+                    title={"" + this.props.label}
+                    color="#841584"
+                    accessibilityLabel={"Hit target " + this.props.label}
+                />
+            </Col>
+            <Col size={1}>
+                <Text>{this.props.hits}/3</Text>
+            </Col>
+            <Col size={1}>
+                <Text>{this.props.cleared}</Text>
+            </Col>
+        </Grid>
+
+    }
+}
 
 export default class CricketTrainer extends Component {
     constructor(props) {
@@ -50,22 +68,11 @@ export default class CricketTrainer extends Component {
       for(let i = 0; i < len; i++) {
           rows.push(
               <Row key={i}>
-                  <Grid>
-                      <Col size={3}>
-                          <Button
-                              onPress={(e) => {this.dartHit(e, i)}}
-                              title={"" + theArray[i]}
-                              color="#841584"
-                              accessibilityLabel={"Hit target " + theArray[i]}
-                          />
-                      </Col>
-                      <Col size={1}>
-                        <Text>\</Text>
-                      </Col>
-                      <Col size={1}>
-                          <Text>3.2</Text>
-                      </Col>
-                  </Grid>
+                  <SingleTarget label={theArray[i]}
+                                hits={0}
+                                cleared={3.1}
+                                callback={() => {this.dartHit(i)}}
+                                />
               </Row>
           );
       }
