@@ -27,6 +27,7 @@ class SingleTarget extends Component {
                     title={"" + this.props.label}
                     color="#841584"
                     accessibilityLabel={"Hit target " + this.props.label}
+                    disabled={this.props.disabled}
                 />
             </Col>
             <Col size={1}>
@@ -65,6 +66,7 @@ export default class CricketTrainer extends Component {
       let theArray = this.state.numbers;
       let len = theArray.length;
       let rows = [];
+      let disabled = false;
       for(let i = 0; i < len; i++) {
           rows.push(
               <Row key={i}>
@@ -72,9 +74,11 @@ export default class CricketTrainer extends Component {
                                 hits={0}
                                 cleared={3.1}
                                 callback={() => {this.dartHit(i)}}
+                                disabled={disabled}
                                 />
               </Row>
           );
+          disabled = true;
       }
       return rows;
   }
