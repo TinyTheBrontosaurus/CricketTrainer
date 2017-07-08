@@ -6,7 +6,7 @@ export default class Round {
     }
 
     toString() {
-        return "${this._roundsCompleted}.${this._dartsThrown}";
+        return `${this._roundsCompleted}.${this._dartsThrown}`;
     }
 
     nextRound() {
