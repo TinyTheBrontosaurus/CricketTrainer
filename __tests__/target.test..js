@@ -55,6 +55,6 @@ test('increment 4x', () => {
     object_under_test.markHit();
 
     // Assert
-    expect(() => {object_under_test.markHit()}).toThrow()
+    expect(() => {object_under_test.markHit()}).toThrow();
     expect(object_under_test.hits()).toBe(3);
 });
