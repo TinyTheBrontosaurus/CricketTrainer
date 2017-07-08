@@ -46,3 +46,53 @@ test('dart increment rollover', () => {
     // Assert
     expect(object_under_test.toString()).toBe("1.0");
 });
+
+test('Basic round increment', () => {
+    // Arrange
+    let object_under_test = new Round();
+
+    // Act
+    object_under_test.nextRound();
+
+    // Assert
+    expect(object_under_test.toString()).toBe("1.0");
+});
+
+test('Round increment x2', () => {
+    // Arrange
+    let object_under_test = new Round();
+    object_under_test.nextRound();
+
+    // Act
+    object_under_test.nextRound();
+
+    // Assert
+    expect(object_under_test.toString()).toBe("2.0");
+});
+
+test('Round increment x2 then dart', () => {
+    // Arrange
+    let object_under_test = new Round();
+    object_under_test.nextRound();
+    object_under_test.nextRound();
+
+    // Act
+    object_under_test.nextDart();
+
+    // Assert
+    expect(object_under_test.toString()).toBe("2.1");
+});
+
+test('Round increment x2 then dart', () => {
+    // Arrange
+    let object_under_test = new Round();
+    object_under_test.nextRound();
+    object_under_test.nextRound();
+    object_under_test.nextDart();
+
+    // Act
+    object_under_test.nextRound();
+
+    // Assert
+    expect(object_under_test.toString()).toBe("3.0");
+});
