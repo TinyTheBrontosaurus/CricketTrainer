@@ -26,7 +26,7 @@ export default class TargetProgress extends Component {
                     onPress={this.props.callback}
                     title={"" + this.props.label}
                     accessibilityLabel={"Hit target " + this.props.label}
-                    disabled={!this.props.callback}
+                    disabled={this.props.disabled}
                     color="#841584"
                 />
             </Col>
