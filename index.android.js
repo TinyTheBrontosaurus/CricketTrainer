@@ -1,9 +1,21 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
     AppRegistry,
 } from 'react-native';
 
 import CricketTrainer from './app/root/launcher.js';
-AppRegistry.registerComponent('CricketTrainer', () => CricketTrainer);
+
+export default class AndroidRoot extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <CricketTrainer/>
+        );
+    }
+};
+
+AppRegistry.registerComponent('AndroidRoot', () => AndroidRoot);
