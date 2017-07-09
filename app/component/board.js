@@ -15,7 +15,6 @@ import TargetProgress from './target-progress.js'
 export default class Board extends Component {
     constructor(props) {
         super(props);
-        this.state = {scoreboard: this.props.scoreboard};
     }
   render() {
     return (
@@ -26,8 +25,8 @@ export default class Board extends Component {
   }
 
   displayAsNumbers() {
-      let theArray = this.state.scoreboard.getTargets();
-      let activei = this.state.scoreboard.getActiveTargetIndex();
+      let theArray = this.props.scoreboard.getTargets();
+      let activei = this.props.scoreboard.getActiveTargetIndex();
       let targetn = theArray.length;
       let rows = [];
       for(let targeti = 0; targeti < targetn; targeti++) {
@@ -35,11 +34,7 @@ export default class Board extends Component {
           let callback = () => {};
           let disabled = true;
           if(targeti === activei) {
-              callback = () => {
-                  let scoreboard = this.state.scoreboard;
-                  scoreboard.hit();
-                  this.setState({scoreboard: scoreboard});
-              };
+              callback = this.props.onHit;
               disabled = false;
           }
           rows.push(
