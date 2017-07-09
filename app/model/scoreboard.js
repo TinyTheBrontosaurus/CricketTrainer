@@ -56,7 +56,7 @@ export default class Scoreboard {
     }
 
     isDone() {
-        return !!this._activeTarget;
+        return !this._activeTarget;
     }
 
     getActiveTarget() {
@@ -64,24 +64,30 @@ export default class Scoreboard {
     }
 
     getTargetTypes() {
-        return this._targets.map((target) => {return target.targetType})
+        return this._targets.map((target) => {return target.type})
     }
 
     getStats() {
         let hitCount = 0;
         for(let target of this._targets)
         {
-            hitCount += target.hits();
+            hitCount += target.counter.hits();
         }
         let totalThrows = this._round.getTotalThrows();
+        let hitsPerRound = null;
+        let completedRounds = this._round.getCompletedRounds()
+        if(completedRounds) {
+            hitsPerRound = hitCount / completedRounds;
+        }
 
-        let stats = {
+        return {
             hitCount: hitCount,
             missCount: totalThrows - hitCount,
             totalThrows: totalThrows,
-            totalRounds: this._round.toString(),
-            hitsPerRound: hitCount / this._round.getCompletedRounds()
-        }
+            completedRounds: completedRounds,
+            currentRound: this._round.toString(),
+            hitsPerRound: hitsPerRound
+        };
     }
 
     getRound() {
