@@ -1,3 +1,5 @@
+const THROWS_PER_ROUND = 3;
+
 export default class Round {
 
     constructor() {
@@ -12,12 +14,22 @@ export default class Round {
     nextRound() {
         this._roundsCompleted += 1;
         this._dartsThrown = 0;
+        return this;
     }
 
     nextDart() {
         this._dartsThrown += 1;
-        if(this._dartsThrown >= 3) {
+        if(this._dartsThrown >= THROWS_PER_ROUND) {
             this.nextRound();
         }
+        return this;
+    }
+
+    getTotalThrows() {
+        return this._roundsCompleted * THROWS_PER_ROUND + this._dartsThrown;
+    }
+
+    getCompletedRounds() {
+        return this._roundsCompleted;
     }
 }

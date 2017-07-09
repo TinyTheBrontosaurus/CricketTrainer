@@ -1,5 +1,6 @@
+const MAX_HITS = 3;
+
 export default class Target {
-    MAX_HITS = 3;
     constructor() {
         this._hits = 0;
     }
@@ -13,9 +14,10 @@ export default class Target {
             throw `Exceeded target hits (${this._hits})`
         }
         this._hits += 1;
+        return this;
     }
 
     isDone() {
-        return this._hits >= this.MAX_HITS;
+        return this._hits >= MAX_HITS;
     }
 }
