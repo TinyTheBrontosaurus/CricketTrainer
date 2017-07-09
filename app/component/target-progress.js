@@ -21,7 +21,7 @@ export default class TargetProgress extends Component {
 
     render() {
         return <Grid>
-            <Col size={3}>
+            <Col size={1}>
                 <Button
                     onPress={this.props.callback}
                     title={"" + this.props.label}
@@ -31,13 +31,26 @@ export default class TargetProgress extends Component {
                 />
             </Col>
             <Col size={1}>
-                <Text>{this.props.hits}/3</Text>
+                <Text>{this.getHitsSymbol()}</Text>
             </Col>
             <Col size={1}>
                 <Text>{this.props.cleared}</Text>
             </Col>
         </Grid>
+    }
 
+    getHitsSymbol() {
+        switch(this.props.hits) {
+            case 0:
+                return '-';
+            case 1:
+                return '\\';
+            case 2:
+                return 'X';
+            case 3:
+            default:
+                return 'O';
+        }
     }
 }
 
