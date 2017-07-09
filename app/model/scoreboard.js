@@ -23,8 +23,8 @@ export default class Scoreboard {
     hit() {
         if(!this.isDone()) {
             this._round.nextDart();
-            this._activeTarget.markHit();
-            if (this._activeTarget.isDone()) {
+            this._activeTarget.counter.markHit();
+            if (this._activeTarget.counter.isDone()) {
                 this._activeTargetIndex++;
                 if (this._activeTargetIndex >= this._targets.length) {
                     this._activeTarget = null;
@@ -49,10 +49,6 @@ export default class Scoreboard {
             this._round.nextRound();
         }
         return this;
-    }
-
-    undo() {
-
     }
 
     isDone() {

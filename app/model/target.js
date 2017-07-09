@@ -1,8 +1,8 @@
 const MAX_HITS = 3;
 
 export default class Target {
-    constructor() {
-        this._hits = 0;
+    constructor(hits) {
+        this._hits = hits || 0;
     }
 
     hits() {
