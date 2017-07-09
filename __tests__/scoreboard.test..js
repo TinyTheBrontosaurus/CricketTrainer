@@ -221,7 +221,7 @@ test('Finish off hits and missx3s', () => {
         totalThrows: 61,
         completedRounds: 20,
         currentRound: '20.1',
-        hitsPerRound: 1.6153846153846154
+        hitsPerRound: 1.05
     });
-    expect(object_under_test.getRound()).toBe("1.05");
+    expect(object_under_test.getRound()).toBe("20.1");
 });

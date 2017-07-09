@@ -81,6 +81,14 @@ export default class Scoreboard {
         return this._activeTarget;
     }
 
+    getActiveTargetIndex() {
+        return this._activeTargetIndex;
+    }
+
+    getTargets() {
+        return this._targets;
+    }
+
     /**
      * Returns an array of all target types, in the order they will be hit
      * @returns {Array}
