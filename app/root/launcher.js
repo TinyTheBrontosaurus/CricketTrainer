@@ -6,6 +6,7 @@ import {
 import Scoreboard from '../model/scoreboard.js';
 import Board from '../component/board.js';
 import Control from '../component/control.js';
+import Stats from '../component/stats.js';
 import { Col, Grid } from "react-native-easy-grid";
 
 
@@ -17,13 +18,14 @@ export default class CricketTrainer extends Component {
     render() {
         return (
             <Grid>
-                <Col size={3}>
+                <Col size={2}>
                     <Board scoreboard={this.state.scoreboard} onHit={() => {this.hit()}}/>
                 </Col>
                 <Col size={1}>
                     <Control onHit={() => {this.hit()}}
                              onMiss={() => {this.miss()}}
                              onMissx3={() => {this.missx3()}}/>
+                    <Stats stats={this.state.scoreboard.getStats()} />
                 </Col>
             </Grid>
         );
