@@ -34,7 +34,7 @@ export default class TargetProgress extends Component {
                 <Text>{this.getHitsSymbol()}</Text>
             </Col>
             <Col size={1}>
-                <Text>{this.props.cleared}</Text>
+                <Text>{(this.props.cleared || "-")}</Text>
             </Col>
         </Grid>
     }

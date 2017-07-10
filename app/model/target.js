@@ -29,7 +29,7 @@ export default class Target {
 
     getDoneRound() {
         if(this.isDone()) {
-            return this._milestones[MAX_HITS - 1];
+            return this._milestones[MAX_HITS - 1].round;
         }
         else {
             return null;
