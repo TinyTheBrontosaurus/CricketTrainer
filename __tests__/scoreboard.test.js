@@ -37,7 +37,8 @@ test('one hit', () => {
     expect(object_under_test.isDone()).toBe(false);
     expect(object_under_test.getActiveTarget()).toEqual({
         type: '20',
-        counter: new Target(1)
+        counter: new Target(1),
+        _milestones: [{_dartsThrown: 1, _roundsCompleted: 0}]
     });
     expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
