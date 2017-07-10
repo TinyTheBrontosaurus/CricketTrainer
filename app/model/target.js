@@ -1,9 +1,9 @@
 const MAX_HITS = 3;
 
 export default class Target {
-    constructor(hits) {
+    constructor(hits, milestones) {
         this._hits = hits || 0;
-        this._milestones = [];
+        this._milestones = milestones || [];
     }
 
     hits() {
