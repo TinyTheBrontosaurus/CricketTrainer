@@ -27,7 +27,7 @@ export default class Scoreboard {
     hit() {
         if(!this.isDone()) {
             this._round.nextDart();
-            this._activeTarget.counter.markHit();
+            this._activeTarget.counter.markHit(this._round);
             if (this._activeTarget.counter.isDone()) {
                 this._activeTargetIndex++;
                 if (this._activeTargetIndex >= this._targets.length) {
