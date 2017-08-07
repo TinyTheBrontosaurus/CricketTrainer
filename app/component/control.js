@@ -5,6 +5,10 @@ import {
     Button
 } from 'react-native';
 
+
+/**
+ * Shows the basic Hit/Miss/End Round controls for Cricket
+ */
 export default class Control extends Component {
     constructor(props) {
         super(props);

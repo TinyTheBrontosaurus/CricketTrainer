@@ -5,6 +5,10 @@ import {
     Text
 } from 'react-native';
 
+
+/**
+ * Several rows of statistics
+ */
 export default class Stats extends Component {
     constructor(props) {
         super(props);

@@ -14,6 +14,10 @@ import {
 import { Col, Grid } from "react-native-easy-grid";
 
 
+/**
+ * A single target for displaying its progress in the darts game. Shows a button that can hit next
+ * to its progress.
+ */
 export default class TargetProgress extends Component {
     constructor(props) {
         super(props);
@@ -39,6 +43,11 @@ export default class TargetProgress extends Component {
         </Grid>
     }
 
+    /**
+     * Cricket progress is typically marked by a \, X, then (X) on a chalkboard. Do the best with
+     * ASCII art here to return that
+     * @returns {*} Symbol based on number of hits
+     */
     getHitsSymbol() {
         switch(this.props.hits) {
             case 0:

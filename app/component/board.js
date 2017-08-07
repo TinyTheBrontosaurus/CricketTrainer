@@ -12,6 +12,10 @@ import {
 import { Row, Grid } from "react-native-easy-grid";
 import TargetProgress from './target-progress.js'
 
+
+/**
+ * Show all the targets lined up vertically, and enable/disable them based upon order and progress
+ */
 export default class Board extends Component {
     constructor(props) {
         super(props);

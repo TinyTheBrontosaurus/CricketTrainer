@@ -10,6 +10,9 @@ import Stats from '../component/stats.js';
 import { Col, Grid } from "react-native-easy-grid";
 
 
+/**
+ * The full board for crickets, including all the targets, the control board, and the statistics
+ */
 export default class CricketTrainer extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +34,9 @@ export default class CricketTrainer extends Component {
         );
     }
 
+    /**
+     * Mark a hit and update the state
+     */
     hit() {
         let scoreboard = this.state.scoreboard;
         scoreboard.hit();
@@ -38,6 +44,9 @@ export default class CricketTrainer extends Component {
 
     }
 
+    /**
+     * Mark a miss and update the state
+     */
     miss() {
         let scoreboard = this.state.scoreboard;
         scoreboard.miss();
@@ -45,14 +54,15 @@ export default class CricketTrainer extends Component {
 
     }
 
+    /**
+     * Show that the rest of teh round (or the entire round) is misses; update the state
+     */
     missx3() {
         let scoreboard = this.state.scoreboard;
         scoreboard.missx3();
         this.setState({scoreboard: scoreboard});
 
     }
-
-
 };
 
 AppRegistry.registerComponent('CricketTrainer', () => CricketTrainer);

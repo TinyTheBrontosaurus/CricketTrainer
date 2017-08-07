@@ -22,7 +22,7 @@ export default class Scoreboard {
     /**
      * Marks a dart that hits. Moves to next target as appropriate.
      * Ignored if scoreboard is already done.
-     * @returns {Scoreboard}
+     * @returns {Scoreboard} this
      */
     hit() {
         if(!this.isDone()) {
@@ -44,7 +44,7 @@ export default class Scoreboard {
     /**
      * Marks a dart that hits.
      * Ignored if scoreboard is already done
-     * @returns {Scoreboard}
+     * @returns {Scoreboard} this
      */
     miss() {
         if(!this.isDone()) {
@@ -81,17 +81,22 @@ export default class Scoreboard {
         return this._activeTarget;
     }
 
+    /**
+     * @returns {number} The index of the current active target. Corresponds to getTargets()
+     */
     getActiveTargetIndex() {
         return this._activeTargetIndex;
     }
 
+    /**
+     * @returns {Array} The array of targets
+     */
     getTargets() {
         return this._targets;
     }
 
     /**
-     * Returns an array of all target types, in the order they will be hit
-     * @returns {Array}
+     * @returns {Array} an array of all target types, in the order they will be hit
      */
     getTargetTypes() {
         return this._targets.map((target) => {return target.type})

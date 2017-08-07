@@ -1,15 +1,27 @@
 const MAX_HITS = 3;
 
+/**
+ * Keeps track of the number of times a target was hit, where a target is a specific spot on the
+ * dartboard (e.g., single 18)
+ */
 export default class Target {
     constructor(hits, milestones) {
         this._hits = hits || 0;
         this._milestones = milestones || [];
     }
 
+    /**
+     * @returns {*|number} The number of times this target has been hit
+     */
     hits() {
         return this._hits;
     }
 
+    /**
+     * Indicate this target has been hit
+     * @param round The current round as an object
+     * @returns {Target} this
+     */
     markHit(round) {
         if(this.isDone()) {
             throw `Exceeded target hits (${this._hits})`
@@ -19,14 +31,23 @@ export default class Target {
         return this;
     }
 
+    /**
+     * @returns {boolean} True if this target has the maximum number of hits, false otherwise
+     */
     isDone() {
         return this._hits >= MAX_HITS;
     }
 
+    /**
+     * @returns {*|Array} An array of Rounds in which hits were made
+     */
     getMilestones() {
         return this._milestones;
     }
 
+    /**
+     * @returns {null} The Round object in which this target was completed, or null if not yet completed
+     */
     getDoneRound() {
         if(this.isDone()) {
             return this._milestones[MAX_HITS - 1].round;
