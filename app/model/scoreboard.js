@@ -3,7 +3,7 @@ import Round from './round.js';
 
 
 /**
- * Keeps track of the scoreboard and it's affiliated stats
+ * Keeps track of the scoreboard and its affiliated stats
  */
 export default class Scoreboard {
 
@@ -42,7 +42,7 @@ export default class Scoreboard {
     }
 
     /**
-     * Marks a dart that hits.
+     * Marks a dart that misses.
      * Ignored if scoreboard is already done
      * @returns {Scoreboard} this
      */
@@ -58,7 +58,7 @@ export default class Scoreboard {
      * Ignored if scoreboard is already done.
      * @returns {Scoreboard}
      */
-    missx3() {
+    missRestOfRound() {
         if(!this.isDone()) {
             this._round.nextRound();
         }
@@ -136,5 +136,4 @@ export default class Scoreboard {
     getRound() {
         return this._round.toString();
     }
-
 }

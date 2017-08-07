@@ -76,12 +76,12 @@ test('one miss', () => {
     expect(object_under_test.getRound()).toBe("0.1");
 });
 
-test('one missx3', () => {
+test('one missRestOfRound', () => {
     // Arrange
     let object_under_test = new Scoreboard();
 
     // Act
-    object_under_test.missx3();
+    object_under_test.missRestOfRound();
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
@@ -208,7 +208,7 @@ test('Finish off hits and missx3s', () => {
     // Act
     for(let i = 0; i < 3 * 7 + 1; i++) {
         object_under_test.hit();
-        object_under_test.missx3();
+        object_under_test.missRestOfRound();
     }
 
     // Assert

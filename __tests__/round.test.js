@@ -97,7 +97,7 @@ test('Round increment x2 then dart', () => {
     expect(object_under_test.getCompletedRounds()).toBe(2);
 });
 
-test('Round increment x2 then dart', () => {
+test('Round increment x2 then dart, then new round', () => {
     // Arrange
     let object_under_test = new Round();
     object_under_test.nextRound();

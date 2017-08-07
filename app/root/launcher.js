@@ -59,7 +59,7 @@ export default class CricketTrainer extends Component {
      */
     missx3() {
         let scoreboard = this.state.scoreboard;
-        scoreboard.missx3();
+        scoreboard.missRestOfRound();
         this.setState({scoreboard: scoreboard});
 
     }
