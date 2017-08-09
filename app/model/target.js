@@ -5,7 +5,8 @@ const MAX_HITS = 3;
  * dartboard (e.g., single 18)
  */
 export default class Target {
-    constructor(hits, milestones) {
+    constructor(label, hits, milestones) {
+        this._label = label || '';
         this._hits = hits || 0;
         this._milestones = milestones || [];
     }
@@ -55,5 +56,13 @@ export default class Target {
         else {
             return null;
         }
+    }
+
+    /**
+     * Access for the label
+     * @returns {*|string} The label
+     */
+    getLabel() {
+        return this._label;
     }
 }

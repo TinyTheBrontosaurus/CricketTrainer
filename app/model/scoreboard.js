@@ -8,10 +8,10 @@ import Round from './round.js';
 export default class Scoreboard {
 
     constructor() {
-        let targetTypes = ['20', '18', '19', '17', '16', '15', 'B'];
+        let targetLabels = ['20', '18', '19', '17', '16', '15', 'B'];
         this._targets = [];
-        for(let targetType of targetTypes) {
-            this._targets.push({type: targetType, counter: new Target()});
+        for(let targetLabel of targetLabels) {
+            this._targets.push(new Target(targetLabel));
         }
         this._activeTargetIndex = 0;
         this._activeTarget = this._targets[this._activeTargetIndex];
@@ -27,8 +27,8 @@ export default class Scoreboard {
     hit() {
         if(!this.isDone()) {
             this._round.nextDart();
-            this._activeTarget.counter.markHit({round: this._round.toString()});
-            if (this._activeTarget.counter.isDone()) {
+            this._activeTarget.markHit({round: this._round.toString()});
+            if (this._activeTarget.isDone()) {
                 this._activeTargetIndex++;
                 if (this._activeTargetIndex >= this._targets.length) {
                     this._activeTarget = null;
@@ -98,8 +98,8 @@ export default class Scoreboard {
     /**
      * @returns {Array} an array of all target types, in the order they will be hit
      */
-    getTargetTypes() {
-        return this._targets.map((target) => {return target.type})
+    getTargetLabels() {
+        return this._targets.map((target) => {return target.getLabel()})
     }
 
     /**
@@ -110,7 +110,7 @@ export default class Scoreboard {
         let hitCount = 0;
         for(let target of this._targets)
         {
-            hitCount += target.counter.hits();
+            hitCount += target.hits();
         }
         let totalThrows = this._round.getTotalThrows();
         let hitsPerRound = null;

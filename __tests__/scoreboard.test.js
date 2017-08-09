@@ -10,11 +10,8 @@ test('constructor', () => {
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
-    expect(object_under_test.getActiveTarget()).toEqual({
-        type: '20',
-        counter: new Target(0)
-    });
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0));
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 0,
         missCount: 0,
@@ -35,11 +32,8 @@ test('one hit', () => {
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
-    expect(object_under_test.getActiveTarget()).toEqual({
-        type: '20',
-        counter: new Target(1, [{round: "0.1"}])
-    });
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 1, [{round: "0.1"}]));
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 1,
         missCount: 0,
@@ -60,11 +54,8 @@ test('one miss', () => {
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
-    expect(object_under_test.getActiveTarget()).toEqual({
-        type: '20',
-        counter: new Target(0)
-    });
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0));
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 0,
         missCount: 1,
@@ -85,11 +76,8 @@ test('one missRestOfRound', () => {
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
-    expect(object_under_test.getActiveTarget()).toEqual({
-        type: '20',
-        counter: new Target(0)
-    });
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0));
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 0,
         missCount: 3,
@@ -112,11 +100,8 @@ test('Finish first target', () => {
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
-    expect(object_under_test.getActiveTarget()).toEqual({
-        type: '18',
-        counter: new Target(0)
-    });
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('18', 0));
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 3,
         missCount: 0,
@@ -140,7 +125,7 @@ test('Finish all target', () => {
     // Assert
     expect(object_under_test.isDone()).toBe(true);
     expect(object_under_test.getActiveTarget()).toEqual(null);
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 21,
         missCount: 0,
@@ -164,7 +149,7 @@ test('Too many hits', () => {
     // Assert
     expect(object_under_test.isDone()).toBe(true);
     expect(object_under_test.getActiveTarget()).toEqual(null);
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 21,
         missCount: 0,
@@ -189,7 +174,7 @@ test('Finish off hits and misses', () => {
     // Assert
     expect(object_under_test.isDone()).toBe(true);
     expect(object_under_test.getActiveTarget()).toEqual(null);
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 21,
         missCount: 20,
@@ -214,7 +199,7 @@ test('Finish off hits and missx3s', () => {
     // Assert
     expect(object_under_test.isDone()).toBe(true);
     expect(object_under_test.getActiveTarget()).toEqual(null);
-    expect(object_under_test.getTargetTypes()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 21,
         missCount: 40,
