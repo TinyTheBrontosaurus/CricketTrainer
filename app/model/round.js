@@ -9,9 +9,9 @@ export default class Round {
     /**
      * Ctor. Start at 0.0.
      */
-    constructor() {
-        this._roundsCompleted = 0;
-        this._dartsThrown = 0;
+    constructor(roundsCompleted, dartsThrown) {
+        this._roundsCompleted = roundsCompleted || 0;
+        this._dartsThrown = dartsThrown || 0;
     }
 
     /**

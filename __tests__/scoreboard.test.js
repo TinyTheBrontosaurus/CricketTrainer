@@ -1,5 +1,6 @@
 import Scoreboard from '../app/model/scoreboard.js';
 import Target from '../app/model/target.js';
+import Round from '../app/model/round.js';
 
 test('constructor', () => {
     // Arrange
@@ -32,7 +33,7 @@ test('one hit', () => {
 
     // Assert
     expect(object_under_test.isDone()).toBe(false);
-    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 1, [{round: "0.1"}]));
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 1, [{round: new Round(0, 1)}]));
     expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
     expect(object_under_test.getStats()).toEqual({
         hitCount: 1,

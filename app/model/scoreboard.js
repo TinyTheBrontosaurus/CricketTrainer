@@ -1,5 +1,6 @@
 import Target from './target.js';
 import Round from './round.js';
+let _ = require('lodash');
 
 
 /**
@@ -27,7 +28,7 @@ export default class Scoreboard {
     hit() {
         if(!this.isDone()) {
             this._round.nextDart();
-            this._activeTarget.markHit({round: this._round.toString()});
+            this._activeTarget.markHit({round: _.clone(this._round)});
             if (this._activeTarget.isDone()) {
                 this._activeTargetIndex++;
                 if (this._activeTargetIndex >= this._targets.length) {

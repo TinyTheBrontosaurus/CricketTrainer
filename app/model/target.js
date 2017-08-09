@@ -20,15 +20,15 @@ export default class Target {
 
     /**
      * Indicate this target has been hit
-     * @param round The current round as an object
+     * @param milestone The milestone as an object
      * @returns {Target} this
      */
-    markHit(round) {
+    markHit(milestone) {
         if(this.isDone()) {
             throw `Exceeded target hits (${this._hits})`
         }
         this._hits += 1;
-        this._milestones.push(Object.assign({}, round));
+        this._milestones.push(milestone);
         return this;
     }
 
