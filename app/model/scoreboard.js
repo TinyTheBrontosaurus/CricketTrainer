@@ -154,8 +154,8 @@ export default class Scoreboard {
         let totalThrows = this._round.getTotalThrows();
         let hitsPerRound = null;
         let completedRounds = this._round.getCompletedRounds();
-        if(completedRounds) {
-            hitsPerRound = hitCount / completedRounds;
+        if(totalThrows) {
+            hitsPerRound = hitCount / totalThrows * THROWS_PER_ROUND;
         }
 
         return {
