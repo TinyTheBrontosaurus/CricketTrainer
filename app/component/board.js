@@ -29,12 +29,12 @@ export default class Board extends Component {
   }
 
   displayAsNumbers() {
-      let theArray = this.props.scoreboard.getTargets();
+      let targets = this.props.scoreboard.getTargets();
       let activei = this.props.scoreboard.getActiveTargetIndex();
-      let targetn = theArray.length;
+      let targetn = targets.length;
       let rows = [];
       for(let targeti = 0; targeti < targetn; targeti++) {
-          let target = theArray[targeti];
+          let target = targets[targeti];
           let callback = () => {};
           let disabled = true;
           if(targeti === activei) {
