@@ -37,10 +37,22 @@ export default class Control extends Component {
                     <Col key={`MissOnceCol${index}`}>
 
                         <Button
-                            key={`MissOnceButton${index}`}
                             onPress={() => this.props.onMissOneThisRound(index)}
                             title={`Miss #${index + 1}`}
                             accessibilityLabel={`Miss #${index + 1}`}
+                            color="#841584"
+                        />
+                    </Col>
+                )}
+            </Row>
+            <Row>
+                {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
+                    <Col key={`HitOnceCol${index}`}>
+
+                        <Button
+                            onPress={() => this.props.onHitOneThisRound(index)}
+                            title={`Hit #${index + 1}`}
+                            accessibilityLabel={`Hit #${index + 1}`}
                             color="#841584"
                         />
                     </Col>
