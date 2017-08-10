@@ -8,15 +8,21 @@
 	},
 	"dependencies": {
 		"react": "16.0.0-alpha.12",
-		"react-native": "0.45.1"
+		"react-native": "0.45.1",
+		"react-native-base": "1.1.0",
+		"react-native-easy-grid": "0.1.13"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",
 		"babel-preset-react-native": "2.0.0",
 		"jest": "20.0.4",
+		"jest-junit": "1.5.1",
 		"react-test-renderer": "16.0.0-alpha.12"
 	},
 	"jest": {
-		"preset": "react-native"
+		"preset": "react-native",
+		"testResultsProcessor": "./node_modules/jest-junit",
+		"collectCoverage": true,
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$"
 	}
 }
