@@ -43,7 +43,7 @@ export default class Board extends Component {
           }
           rows.push(
               <Row key={targeti}>
-                  <TargetProgress label={target.type}
+                  <TargetProgress label={target.getLabel()}
                                 hits={target.hits()}
                                 cleared={target.getDoneRound()}
                                 callback={callback}

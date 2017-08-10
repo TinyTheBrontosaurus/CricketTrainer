@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { Row, Grid } from "react-native-easy-grid";
+import {THROWS_PER_ROUND} from "../model/round"
+import { Row,Col,  Grid } from "react-native-easy-grid";
 import {
     Button
 } from 'react-native';
@@ -33,8 +33,22 @@ export default class Control extends Component {
               />
             </Row>
             <Row>
+                {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
+                    <Col key={`MissOnceCol${index}`}>
+
+                        <Button
+                            key={`MissOnceButton${index}`}
+                            onPress={() => this.props.onMissOneThisRound(index)}
+                            title={`Miss #${index + 1}`}
+                            accessibilityLabel={`Miss #${index + 1}`}
+                            color="#841584"
+                        />
+                    </Col>
+                )}
+            </Row>
+            <Row>
                 <Button
-                    onPress={this.props.onMissx3}
+                    onPress={this.props.onMissRestOfRound}
                     title={"Miss rest"}
                     accessibilityLabel={"Miss rest of round"}
                     color="#841584"

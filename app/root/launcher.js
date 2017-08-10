@@ -27,7 +27,9 @@ export default class CricketTrainer extends Component {
                 <Col size={1}>
                     <Control onHit={() => {this.hit()}}
                              onMiss={() => {this.miss()}}
-                             onMissx3={() => {this.missx3()}}/>
+                             onMissOneThisRound={(index) => (this.missOneThisRound(index))}
+                             onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
+                             onMissRestOfRound={() => {this.missRestOfRound()}}/>
                     <Stats stats={this.state.scoreboard.getStats()} />
                 </Col>
             </Grid>
@@ -55,9 +57,27 @@ export default class CricketTrainer extends Component {
     }
 
     /**
+     * Mark a round as having missed one, and update the state
+     */
+    missOneThisRound(index) {
+        let scoreboard = this.state.scoreboard;
+        scoreboard.missOneThisRound(index);
+        this.setState({scoreboard: scoreboard});
+    }
+
+    /**
+     * Mark a round as having hit one, and update the state
+     */
+    hitOneThisRound(index) {
+        let scoreboard = this.state.scoreboard;
+        scoreboard.hitOneThisRound(index);
+        this.setState({scoreboard: scoreboard});
+    }
+
+    /**
      * Show that the rest of teh round (or the entire round) is misses; update the state
      */
-    missx3() {
+    missRestOfRound() {
         let scoreboard = this.state.scoreboard;
         scoreboard.missRestOfRound();
         this.setState({scoreboard: scoreboard});

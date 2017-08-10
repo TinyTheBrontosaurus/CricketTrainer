@@ -1,5 +1,5 @@
 import Target from './target.js';
-import Round from './round.js';
+import Round, {THROWS_PER_ROUND} from './round.js';
 let _ = require('lodash');
 
 
@@ -62,6 +62,44 @@ export default class Scoreboard {
     missRestOfRound() {
         if(!this.isDone()) {
             this._round.nextRound();
+        }
+        return this;
+    }
+
+    /**
+     * Mark that there was only one miss this round (with the rest as hits. Assumes start with a fresh round
+     * @param dartMissed The index of the dart that missed
+     * @returns {Scoreboard} this, for chaining
+     */
+    missOneThisRound(dartMissed) {
+        if(this._round.isFreshRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                if(dart === dartMissed) {
+                    this.miss();
+                }
+                else {
+                    this.hit();
+                }
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Mark that there was only one hit this round (with the rest as misses. Assumes start with a fresh round
+     * @param dartMissed The index of the dart that missed
+     * @returns {Scoreboard} this, for chaining
+     */
+    hitOneThisRound(dartMissed) {
+        if(this._round.isFreshRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                if(dart !== dartMissed) {
+                    this.miss();
+                }
+                else {
+                    this.hit();
+                }
+            }
         }
         return this;
     }
