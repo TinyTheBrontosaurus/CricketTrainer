@@ -16,7 +16,7 @@ export default class Stats extends Component {
   render() {
     return (
         <Grid>
-            {this.rowx2('Round:', this.props.stats.currentRound)}
+            {this.rowx2('Round:', this.props.stats.currentRound.toString())}
             {this.rowx2('Hits / round:', this.props.stats.hitsPerRound)}
             {this.rowx2('Throws', `${this.props.stats.totalThrows}`)}
             {this.rowx2('Hits', `${this.props.stats.hitCount}`)}

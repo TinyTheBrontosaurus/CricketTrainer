@@ -18,10 +18,10 @@ test('constructor', () => {
         missCount: 0,
         totalThrows: 0,
         completedRounds: 0,
-        currentRound: '0.0',
+        currentRound: new Round(0, 0),
         hitsPerRound: null
     });
-    expect(object_under_test.getRound()).toBe("0.0");
+    expect(object_under_test.getRound()).toEqual(new Round(0, 0));
 });
 
 test('one hit', () => {
@@ -40,10 +40,10 @@ test('one hit', () => {
         missCount: 0,
         totalThrows: 1,
         completedRounds: 0,
-        currentRound: '0.1',
+        currentRound: new Round(0, 1),
         hitsPerRound: null
     });
-    expect(object_under_test.getRound()).toBe("0.1");
+    expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });
 
 test('one miss', () => {
@@ -62,10 +62,10 @@ test('one miss', () => {
         missCount: 1,
         totalThrows: 1,
         completedRounds: 0,
-        currentRound: '0.1',
+        currentRound: new Round(0, 1),
         hitsPerRound: null
     });
-    expect(object_under_test.getRound()).toBe("0.1");
+    expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });
 
 test('one missRestOfRound', () => {
@@ -84,10 +84,10 @@ test('one missRestOfRound', () => {
         missCount: 3,
         totalThrows: 3,
         completedRounds: 1,
-        currentRound: '1.0',
+        currentRound: new Round(1, 0),
         hitsPerRound: 0
     });
-    expect(object_under_test.getRound()).toBe("1.0");
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
 });
 
 test('Finish first target', () => {
@@ -108,10 +108,10 @@ test('Finish first target', () => {
         missCount: 0,
         totalThrows: 3,
         completedRounds: 1,
-        currentRound: '1.0',
+        currentRound: new Round(1, 0),
         hitsPerRound: 3
     });
-    expect(object_under_test.getRound()).toBe("1.0");
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
 });
 
 test('Finish all target', () => {
@@ -132,10 +132,10 @@ test('Finish all target', () => {
         missCount: 0,
         totalThrows: 21,
         completedRounds: 7,
-        currentRound: '7.0',
+        currentRound: new Round(7, 0),
         hitsPerRound: 3
     });
-    expect(object_under_test.getRound()).toBe("7.0");
+    expect(object_under_test.getRound()).toEqual(new Round(7, 0));
 });
 
 test('Too many hits', () => {
@@ -156,10 +156,10 @@ test('Too many hits', () => {
         missCount: 0,
         totalThrows: 21,
         completedRounds: 7,
-        currentRound: '7.0',
+        currentRound: new Round(7, 0),
         hitsPerRound: 3
     });
-    expect(object_under_test.getRound()).toBe("7.0");
+    expect(object_under_test.getRound()).toEqual(new Round(7, 0));
 });
 
 test('Finish off hits and misses', () => {
@@ -181,10 +181,10 @@ test('Finish off hits and misses', () => {
         missCount: 20,
         totalThrows: 41,
         completedRounds: 13,
-        currentRound: '13.2',
+        currentRound: new Round(13, 2),
         hitsPerRound: 1.6153846153846154
     });
-    expect(object_under_test.getRound()).toBe("13.2");
+    expect(object_under_test.getRound()).toEqual(new Round(13, 2));
 });
 
 test('Finish off hits and missx3s', () => {
@@ -206,8 +206,8 @@ test('Finish off hits and missx3s', () => {
         missCount: 40,
         totalThrows: 61,
         completedRounds: 20,
-        currentRound: '20.1',
+        currentRound: new Round(20, 1),
         hitsPerRound: 1.05
     });
-    expect(object_under_test.getRound()).toBe("20.1");
+    expect(object_under_test.getRound()).toEqual(new Round(20, 1));
 });

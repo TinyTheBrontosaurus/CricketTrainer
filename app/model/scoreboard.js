@@ -125,7 +125,7 @@ export default class Scoreboard {
             missCount: totalThrows - hitCount,
             totalThrows: totalThrows,
             completedRounds: completedRounds,
-            currentRound: this._round.toString(),
+            currentRound: this._round,
             hitsPerRound: hitsPerRound
         };
     }
@@ -135,6 +135,6 @@ export default class Scoreboard {
      * @returns {*}
      */
     getRound() {
-        return this._round.toString();
+        return this._round;
     }
 }
