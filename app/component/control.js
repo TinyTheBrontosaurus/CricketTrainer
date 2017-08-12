@@ -33,6 +33,14 @@ export default class Control extends Component {
               />
             </Row>
             <Row>
+                <Button
+                    onPress={this.props.onHitAllThisRound}
+                    title={"Hit all"}
+                    accessibilityLabel={"Hit all"}
+                    color="#841584"
+                />
+            </Row>
+            <Row>
                 {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
                     <Col key={`MissOnceCol${index}`}>
 

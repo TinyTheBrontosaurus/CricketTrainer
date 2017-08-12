@@ -27,6 +27,7 @@ export default class CricketTrainer extends Component {
                 <Col size={1}>
                     <Control onHit={() => {this.hit()}}
                              onMiss={() => {this.miss()}}
+                             onHitAllThisround{() => {this.hitAllThisRound()}}
                              onMissOneThisRound={(index) => (this.missOneThisRound(index))}
                              onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
                              onMissRestOfRound={() => {this.missRestOfRound()}}/>
@@ -54,6 +55,15 @@ export default class CricketTrainer extends Component {
         scoreboard.miss();
         this.setState({scoreboard: scoreboard});
 
+    }
+
+    /**
+     * Mark a round as having hit all, and update the state
+     */
+    hitAllThisRound() {
+        let scoreboard = this.state.scoreboard;
+        scoreboard.hitAllThisRound();
+        this.setState({scoreboard: scoreboard});
     }
 
     /**
