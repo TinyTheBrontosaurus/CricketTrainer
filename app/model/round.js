@@ -60,6 +60,13 @@ export default class Round {
     }
 
     /**
+     * @returns {*|number} The number of darts thrown this round (0, 1, or 2 for a 3-throw round)
+     */
+    getDartsThrownThisRound() {
+        return this._dartsThrown;
+    }
+
+    /**
      * @returns {boolean} True if this is the beginning of a round (no darts thrown). False otherwise
      */
     isFreshRound() {
