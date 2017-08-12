@@ -18,11 +18,11 @@ export default class TargetProgress extends Component {
 
     render() {
         return <View style={styles.container}>
-            <Text style={this.props.disabled ? styles.inactiveTarget : styles.activeTarget}>
+            <Text style={styles.target}>
                 {this.props.label}
             </Text>
-            <Text>{this.getHitsSymbol()}</Text>
-            <Text>{(this.props.cleared || "-").toString()}</Text>
+            <Text style={styles.target}>{this.getHitsSymbol()}</Text>
+            <Text style={styles.target}>{(this.props.cleared || "-").toString()}</Text>
         </View>
     }
 
@@ -54,16 +54,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center"
     },
-    baseText: {
-        fontFamily: 'Cochin',
-        textAlign: 'center',
-        textAlignVertical: 'center'
-    },
-    inactiveTarget: {
-    },
-    activeTarget: {
-        fontWeight: 'bold',
-    },
+    target: {
+        fontFamily: 'KGTenThousandReasons'
+    }
 });
 
 

@@ -24,5 +24,8 @@
 		"testResultsProcessor": "./node_modules/jest-junit",
 		"collectCoverage": true,
 		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$"
+	},
+	"rnpm": {
+		"assets": ["app/assets/fonts"]
 	}
 }
