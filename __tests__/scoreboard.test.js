@@ -219,7 +219,7 @@ test('Finish off hits and misses', () => {
     expect(object_under_test.getRound()).toEqual(new Round(13, 2));
 });
 
-test('Finish off hits and missxRestOfRoundss', () => {
+test('Finish off hits and missxRestOfRounds', () => {
     // Arrange
     let object_under_test = new Scoreboard();
 
