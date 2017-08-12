@@ -4,7 +4,6 @@ import {
   View
 } from 'react-native';
 
-import { Row, Grid } from "react-native-easy-grid";
 import TargetProgress from './target-progress.js'
 
 
@@ -17,15 +16,9 @@ export default class Board extends Component {
     }
   render() {
     return (
-        <Grid>
-            <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'space-around'
-                }}>
-                {this.displayAsNumbers()}
-            </View>
-        </Grid>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+            {this.displayAsNumbers()}
+        </View>
     );
   }
 
@@ -43,15 +36,14 @@ export default class Board extends Component {
               disabled = false;
           }
           rows.push(
-                  <Row key={targeti} style={{backgroundColor: theColors[targeti]}}>
+                  <View key={targeti} style={{flex: 1, flexDirection: 'column', backgroundColor: theColors[targeti]}}>
                       <TargetProgress label={target.getLabel()}
                                     hits={target.hits()}
                                     cleared={target.getDoneRound()}
                                     callback={callback}
-                                    disabled={disabled}
-                                      style={{backgroundColor: 'black'}}
+                                    disabled={disabled} 
                                     />
-                  </Row>
+                  </View>
           );
           disabled = true;
       }

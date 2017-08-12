@@ -6,8 +6,6 @@ import {
   View
 } from 'react-native';
 
-import { Col, Grid } from "react-native-easy-grid";
-
 
 /**
  * A single target for displaying its progress in the darts game. Shows a button that can hit next
