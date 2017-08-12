@@ -41,7 +41,7 @@ test('one hit', () => {
         totalThrows: 1,
         completedRounds: 0,
         currentRound: new Round(0, 1),
-        hitsPerRound: null
+        hitsPerRound: 3
     });
     expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });
@@ -95,7 +95,7 @@ test('one miss', () => {
         totalThrows: 1,
         completedRounds: 0,
         currentRound: new Round(0, 1),
-        hitsPerRound: null
+        hitsPerRound: 0
     });
     expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });
@@ -214,12 +214,12 @@ test('Finish off hits and misses', () => {
         totalThrows: 41,
         completedRounds: 13,
         currentRound: new Round(13, 2),
-        hitsPerRound: 1.6153846153846154
+        hitsPerRound: 1.5365853658536586
     });
     expect(object_under_test.getRound()).toEqual(new Round(13, 2));
 });
 
-test('Finish off hits and missx3s', () => {
+test('Finish off hits and missxRestOfRoundss', () => {
     // Arrange
     let object_under_test = new Scoreboard();
 
@@ -239,7 +239,7 @@ test('Finish off hits and missx3s', () => {
         totalThrows: 61,
         completedRounds: 20,
         currentRound: new Round(20, 1),
-        hitsPerRound: 1.05
+        hitsPerRound: 1.0327868852459017
     });
     expect(object_under_test.getRound()).toEqual(new Round(20, 1));
 });
