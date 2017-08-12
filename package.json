@@ -10,7 +10,8 @@
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.45.1",
 		"react-native-base": "1.1.0",
-		"react-native-easy-grid": "0.1.13"
+		"react-native-easy-grid": "0.1.13",
+		"react-native-icons": "^0.7.1"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",
@@ -26,6 +27,8 @@
 		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$"
 	},
 	"rnpm": {
-		"assets": ["app/assets/fonts"]
+		"assets": [
+			"app/assets/fonts"
+		]
 	}
 }
