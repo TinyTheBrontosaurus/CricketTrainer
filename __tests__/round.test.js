@@ -25,7 +25,7 @@ test('basic dart increment', () => {
     expect(object_under_test.toString()).toBe("0.1");
     expect(object_under_test.getTotalThrows()).toBe(1);
     expect(object_under_test.getCompletedRounds()).toBe(0);
-    expect(object_under_test.getDartsThrownThisRound()).toBe(1;
+    expect(object_under_test.getDartsThrownThisRound()).toBe(1);
 });
 
 test('dart increment 2x', () => {
