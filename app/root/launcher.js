@@ -21,10 +21,10 @@ export default class CricketTrainer extends Component {
     render() {
         return (
             <Grid>
-                <Col size={2}>
+                <Col size={1}>
                     <Board scoreboard={this.state.scoreboard} onHit={() => {this.hit()}}/>
                 </Col>
-                <Col size={1}>
+                <Col size={2}>
                     <Control onHit={() => {this.hit()}}
                              onMiss={() => {this.miss()}}
                              onHitAllThisRound={() => {this.hitAllThisRound()}}
