@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-let { Icon, } = require('react-native-icons');
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-    Button
+    Button,
+    View
 } from 'react-native';
 
 
@@ -13,7 +14,7 @@ export default class PerThrowControl extends Component {
     return (
         <View style={{flex: 1, flexDirection: 'row'}}>
             <Icon
-                name="'fontawesome|facebook"
+                name="facebook"
                 />
             <Button
                 onPress={this.props.onHit}
