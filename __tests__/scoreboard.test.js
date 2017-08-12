@@ -288,7 +288,49 @@ test('One-miss rounds', () => {
     expect(object_under_test.getRound()).toEqual(new Round(1, 0));
 });
 
-test('Chaing single-function rounds', () => {
+test('Hit-all rounds', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.hitAllThisRound();
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('18', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 3,
+        missCount: 0,
+        totalThrows: 3,
+        completedRounds: 1,
+        currentRound: new Round(1, 0),
+        hitsPerRound: 3
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
+});
+
+test('Miss-all rounds', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.missAllThisRound();
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 0,
+        missCount: 3,
+        totalThrows: 3,
+        completedRounds: 1,
+        currentRound: new Round(1, 0),
+        hitsPerRound: 0
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
+});
+
+test('Chaining single-function rounds', () => {
     // Arrange
     let object_under_test = new Scoreboard();
 
@@ -314,7 +356,7 @@ test('Chaing single-function rounds', () => {
     expect(object_under_test.getRound()).toEqual(new Round(6, 0));
 });
 
-test('Chaing single-function rounds when not on round border', () => {
+test('Chaining single-function rounds when not on round border', () => {
     // Arrange
     let object_under_test = new Scoreboard();
 

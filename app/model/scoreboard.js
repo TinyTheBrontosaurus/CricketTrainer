@@ -39,6 +39,7 @@ export default class Scoreboard {
                 }
             }
         }
+
         return this;
     }
 
@@ -51,6 +52,7 @@ export default class Scoreboard {
         if(!this.isDone()) {
             this._round.nextDart();
         }
+
         return this;
     }
 
@@ -63,6 +65,7 @@ export default class Scoreboard {
         if(!this.isDone()) {
             this._round.nextRound();
         }
+
         return this;
     }
 
@@ -76,6 +79,7 @@ export default class Scoreboard {
                 this.hit();
             }
         }
+
         return this;
     }
 
@@ -89,6 +93,7 @@ export default class Scoreboard {
                 this.miss();
             }
         }
+
         return this;
     }
 
@@ -108,6 +113,7 @@ export default class Scoreboard {
                 }
             }
         }
+
         return this;
     }
 
@@ -127,6 +133,7 @@ export default class Scoreboard {
                 }
             }
         }
+
         return this;
     }
 
