@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  Button,
-  Text
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 
 import { Col, Grid } from "react-native-easy-grid";
@@ -18,23 +19,13 @@ export default class TargetProgress extends Component {
     }
 
     render() {
-        return <Grid>
-            <Col size={1}>
-                <Button
-                    onPress={this.props.callback}
-                    title={"" + this.props.label}
-                    accessibilityLabel={"Hit target " + this.props.label}
-                    disabled={this.props.disabled}
-                    color="#841584"
-                />
-            </Col>
-            <Col size={1}>
-                <Text>{this.getHitsSymbol()}</Text>
-            </Col>
-            <Col size={1}>
-                <Text>{(this.props.cleared || "-").toString()}</Text>
-            </Col>
-        </Grid>
+        return <View style={styles.container}>
+            <Text style={this.props.disabled ? styles.inactiveTarget : styles.activeTarget}>
+                {this.props.label}
+            </Text>
+            <Text>{this.getHitsSymbol()}</Text>
+            <Text>{(this.props.cleared || "-").toString()}</Text>
+        </View>
     }
 
     /**
@@ -56,5 +47,26 @@ export default class TargetProgress extends Component {
         }
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        verticalAlign: 'center',
+        justifyContent: "space-around",
+        alignItems: "center"
+    },
+    baseText: {
+        fontFamily: 'Cochin',
+        textAlign: 'center',
+        textAlignVertical: 'center'
+    },
+    inactiveTarget: {
+    },
+    activeTarget: {
+        fontWeight: 'bold',
+    },
+});
+
 
 AppRegistry.registerComponent('TargetProgress', () => TargetProgress);

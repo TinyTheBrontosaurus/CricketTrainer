@@ -1,12 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  View
 } from 'react-native';
 
 import { Row, Grid } from "react-native-easy-grid";
@@ -23,7 +18,13 @@ export default class Board extends Component {
   render() {
     return (
         <Grid>
-            {this.displayAsNumbers()}
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-around'
+                }}>
+                {this.displayAsNumbers()}
+            </View>
         </Grid>
     );
   }
@@ -42,14 +43,15 @@ export default class Board extends Component {
               disabled = false;
           }
           rows.push(
-              <Row key={targeti}>
-                  <TargetProgress label={target.getLabel()}
-                                hits={target.hits()}
-                                cleared={target.getDoneRound()}
-                                callback={callback}
-                                disabled={disabled}
-                                />
-              </Row>
+                  <Row key={targeti} style={{backgroundColor: theColors[targeti]}}>
+                      <TargetProgress label={target.getLabel()}
+                                    hits={target.hits()}
+                                    cleared={target.getDoneRound()}
+                                    callback={callback}
+                                    disabled={disabled}
+                                      style={{backgroundColor: 'black'}}
+                                    />
+                  </Row>
           );
           disabled = true;
       }
@@ -57,4 +59,14 @@ export default class Board extends Component {
   }
 };
 
+theColors = [
+    'powderblue',
+    'skyblue',
+    'steelblue',
+    'blue',
+    'powderblue',
+    'skyblue',
+    'steelblue',
+    'blue'
+];
 AppRegistry.registerComponent('Board', () => Board);
