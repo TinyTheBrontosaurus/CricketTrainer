@@ -67,7 +67,33 @@ export default class Scoreboard {
     }
 
     /**
-     * Mark that there was only one miss this round (with the rest as hits. Assumes start with a fresh round
+     * Mark that there were all hits this round. Assumes start with a fresh round
+     * @returns {Scoreboard} this, for chaining
+     */
+    hitAllThisRound() {
+        if(this._round.isFreshRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                this.hit();
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Mark that there were all misses this round. Assumes start with a fresh round
+     * @returns {Scoreboard} this, for chaining
+     */
+    missAllThisRound() {
+        if(this._round.isFreshRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                this.miss();
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Mark that there was only one miss this round (with the rest as hits). Assumes start with a fresh round
      * @param dartMissed The index of the dart that missed
      * @returns {Scoreboard} this, for chaining
      */

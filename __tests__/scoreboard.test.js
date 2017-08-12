@@ -313,3 +313,32 @@ test('Chaing single-function rounds', () => {
     });
     expect(object_under_test.getRound()).toEqual(new Round(6, 0));
 });
+
+test('Chaing single-function rounds when not on round border', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.miss()
+        .missOneThisRound(0)
+        .missOneThisRound(1)
+        .missOneThisRound(2)
+        .hitOneThisRound(0)
+        .hitOneThisRound(1)
+        .hitOneThisRound(2)
+        .hitAllThisRound()
+        .missAllThisRound();
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 0,
+        missCount: 1,
+        totalThrows: 1,
+        completedRounds: 0,
+        currentRound: new Round(0, 1),
+        hitsPerRound: 0
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(0, 1));
+});
