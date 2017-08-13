@@ -27,32 +27,14 @@ export default class PerRoundControl extends Component {
                 </View>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
                     {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
-                        <Button
+                        <ThreeIconButton
                             key={`MissOnceCol2${index}`}
+                            text={`Miss #${index + 1}`}
+                            style={styles.roundButton}
+                            symbolBool={[index !== 0, index !== 1, index !== 2]}
                             onPress={() => this.props.onMissOneThisRound(index)}
-                            style={styles.roundButton}>
-                            <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
-                                <View
-                                    style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                                    {[...new Array(THROWS_PER_ROUND)].map((x2, missIndex) => {
-                                        if(index === missIndex) {
-                                            return <Icon
-                                                name="times-circle-o"
-                                                style={{color: 'red'}}
-                                                size={styles.iconSize}/>
-                                        }
-                                        else {
-                                            return <Icon
-                                                name="check-circle-o"
-                                                style={{color: 'green'}}
-                                                size={styles.iconSize}/>
-                                        }
-                                        })
-                                    }
-                                </View>
-                                <Text>Miss #{index + 1}</Text>
-                            </View>
-                        </Button>
+
+                        />
                     )}
                 </View>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
