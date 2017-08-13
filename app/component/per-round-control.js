@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {THROWS_PER_ROUND} from "../model/round"
+import ThreeIconButton from "../component/three-icon-button.js"
 import Button from 'apsl-react-native-button'
 import {
     View,
@@ -17,23 +18,12 @@ export default class PerRoundControl extends Component {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
-                    <Button
+                    <ThreeIconButton
+                        text={`Hit all ${THROWS_PER_ROUND}`}
+                        style={styles.roundButton}
+                        symbolBool={[true, true, true]}
                         onPress={() => this.props.onHitAllThisRound()}
-                        style={styles.roundButton}>
-                        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
-                            <View
-                                style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                                {[...new Array(THROWS_PER_ROUND)].map((x2, unusedIndex) => {
-                                    return <Icon
-                                        name="check-circle-o"
-                                        style={{color: 'green'}}
-                                        size={styles.iconSize}/>
-                                })
-                                }
-                            </View>
-                            <Text>Hit all {THROWS_PER_ROUND}</Text>
-                        </View>
-                    </Button>
+                    />
                 </View>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
                     {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
