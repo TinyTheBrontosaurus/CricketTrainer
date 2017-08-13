@@ -46,6 +46,36 @@ export default class PerRoundControl extends Component {
                         </Button>
                     )}
                 </View>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
+                    {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
+                        <Button
+                            key={`HitOnceCol2${index}`}
+                            onPress={() => this.props.onHitOneThisRound(index)}
+                            style={styles.roundButton}>
+                            <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+                                <View
+                                    style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                                    {[...new Array(THROWS_PER_ROUND)].map((x2, hitIndex) => {
+                                        if(index !== hitIndex) {
+                                            return <Icon
+                                                name="times-circle-o"
+                                                style={{color: 'red'}}
+                                                size={styles.iconSize}/>
+                                        }
+                                        else {
+                                            return <Icon
+                                                name="check-circle-o"
+                                                style={{color: 'green'}}
+                                                size={styles.iconSize}/>
+                                        }
+                                    })
+                                    }
+                                </View>
+                                <Text>Hit #{index + 1}</Text>
+                            </View>
+                        </Button>
+                    )}
+                </View>
             </View>
         );
     };

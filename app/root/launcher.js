@@ -37,12 +37,6 @@ export default class CricketTrainer extends Component {
                          onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
                          onMissRestOfRound={() => {this.missRestOfRound()}}/>
 
-                    <Control onHit={() => {this.hit()}}
-                             onMiss={() => {this.miss()}}
-                             onHitAllThisRound={() => {this.hitAllThisRound()}}
-                             onMissOneThisRound={(index) => (this.missOneThisRound(index))}
-                             onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
-                             onMissRestOfRound={() => {this.missRestOfRound()}}/>
                     <Stats stats={this.state.scoreboard.getStats()} />
                 </Col>
             </Grid>
