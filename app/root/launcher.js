@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {
     AppRegistry,
+    View
 } from 'react-native';
 
 import Scoreboard from '../model/scoreboard.js';
 import Board from '../component/board.js';
-import Control from '../component/control.js';
 import PerThrowControl from '../component/per-throw-control.js';
 import PerRoundControl from '../component/per-round-control.js';
 import Stats from '../component/stats.js';
-import { Col, Grid } from "react-native-easy-grid";
 
 
 /**
@@ -22,24 +21,30 @@ export default class CricketTrainer extends Component {
     }
     render() {
         return (
-            <Grid>
-                <Col size={1}>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+                <View style={{flex: 1}}>
                     <Board scoreboard={this.state.scoreboard} onHit={() => {this.hit()}}/>
-                </Col>
-                <Col size={2}>
-                    <PerThrowControl
-                        onHit={() => {this.hit()}}
-                        onMiss={() => {this.miss()}}
-                    />
-                    <PerRoundControl
-                         onHitAllThisRound={() => {this.hitAllThisRound()}}
-                         onMissOneThisRound={(index) => (this.missOneThisRound(index))}
-                         onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
-                         onMissAllThisRound={() => {this.missAllThisRound()}}/>
-
-                    <Stats stats={this.state.scoreboard.getStats()} />
-                </Col>
-            </Grid>
+                </View>
+                <View style={{flex: 2, flexDirection: 'column'}}>
+                    <View style={{flex: 1}}>
+                        <PerThrowControl
+                            onHit={() => {this.hit()}}
+                            onMiss={() => {this.miss()}}
+                        />
+                    </View>
+                    <View style={{flex: 3}}>
+                        <PerRoundControl
+                             onHitAllThisRound={() => {this.hitAllThisRound()}}
+                             onMissOneThisRound={(index) => (this.missOneThisRound(index))}
+                             onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
+                             onMissAllThisRound={() => {this.missAllThisRound()}}/>
+                    </View>
+                    <View style={{flex: 1}}>
+                        <Stats
+                            stats={this.state.scoreboard.getStats()} />
+                    </View>
+                </View>
+            </View>
         );
     }
 
