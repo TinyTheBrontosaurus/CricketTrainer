@@ -17,6 +17,25 @@ export default class PerRoundControl extends Component {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
+                    <Button
+                        onPress={() => this.props.onHitAllThisRound()}
+                        style={styles.roundButton}>
+                        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+                            <View
+                                style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                                {[...new Array(THROWS_PER_ROUND)].map((x2, unusedIndex) => {
+                                    return <Icon
+                                        name="check-circle-o"
+                                        style={{color: 'green'}}
+                                        size={styles.iconSize}/>
+                                })
+                                }
+                            </View>
+                            <Text>Hit all {THROWS_PER_ROUND}</Text>
+                        </View>
+                    </Button>
+                </View>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
                     {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
                         <Button
                             key={`MissOnceCol2${index}`}
@@ -75,6 +94,25 @@ export default class PerRoundControl extends Component {
                             </View>
                         </Button>
                     )}
+                </View>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
+                    <Button
+                        onPress={() => this.props.onMissAllThisRound()}
+                        style={styles.roundButton}>
+                        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+                            <View
+                                style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                                {[...new Array(THROWS_PER_ROUND)].map((x2, unusedIndex) => {
+                                    return <Icon
+                                        name="times-circle-o"
+                                        style={{color: 'red'}}
+                                        size={styles.iconSize}/>
+                                })
+                                }
+                            </View>
+                            <Text>Miss all {THROWS_PER_ROUND}</Text>
+                        </View>
+                    </Button>
                 </View>
             </View>
         );

@@ -35,7 +35,7 @@ export default class CricketTrainer extends Component {
                          onHitAllThisRound={() => {this.hitAllThisRound()}}
                          onMissOneThisRound={(index) => (this.missOneThisRound(index))}
                          onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
-                         onMissRestOfRound={() => {this.missRestOfRound()}}/>
+                         onMissAllThisRound={() => {this.missAllThisRound()}}/>
 
                     <Stats stats={this.state.scoreboard.getStats()} />
                 </Col>
@@ -97,7 +97,12 @@ export default class CricketTrainer extends Component {
         let scoreboard = this.state.scoreboard;
         scoreboard.missRestOfRound();
         this.setState({scoreboard: scoreboard});
+    }
 
+    missAllThisRound() {
+        let scoreboard = this.state.scoreboard;
+        scoreboard.missAllThisRound();
+        this.setState({scoreboard: scoreboard});
     }
 };
 
