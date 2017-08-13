@@ -11,32 +11,41 @@ export default class PerThrowControl extends Component {
     constructor(props) {
         super(props);
     }
-  render() {
-    return (
-        <View style={{flex: 1, flexDirection: 'row'}}>
-            <Button
-                onPress={this.props.onHit}
-                title={"Hit"}
-                textStyle={{fontSize: 18}}
-                accessibilityLabel={"Hit target"}
-                color="#841584"
-            ><View><Icon
-                name="check-circle-o"
-                style={{color: 'green'}}
-            /><Text>2Hit2</Text>
+
+    render() {
+        return (
+            <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
+                <Button
+                    onPress={this.props.onHit}
+                    style={styles.hitButton}>
+                    <View
+                        style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+                        <Icon
+                            name="check-circle-o"
+                            style={{color: 'green'}}
+                            size={60}/>
+                        <Text>Hit</Text>
+                    </View>
+                </Button>
+                <View style={{flex: .1}}/>
+                <Button
+                    onPress={this.props.onMiss}
+                    style={styles.missButton}>
+                    <View
+                        style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+                        <Icon
+                            name="times-circle-o"
+                            style={{color: 'red'}}
+                            size={60}/>
+                        <Text>Miss</Text>
+                    </View>
+                </Button>
             </View>
-            </Button>
-            <Icon
-                name="times-circle-o"
-                style={{color: 'red'}}
-            />
-            <Button
-                onPress={this.props.onMiss}
-                title={"Miss"}
-                accessibilityLabel={"Miss target"}
-                color="#841584"
-            />
-        </View>
-    );
-  }
+        );
+    };
+};
+
+let styles = {
+    hitButton: {backgroundColor: "#ccffcc", flex: 1, height: "45%"},
+    missButton: {backgroundColor: "#ffcccc", flex: 1, height: "45%"}
 };
