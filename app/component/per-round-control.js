@@ -3,6 +3,7 @@ import {THROWS_PER_ROUND} from "../model/round"
 import ThreeIconButton from "../component/three-icon-button.js"
 import {
     View,
+    Text
 } from 'react-native';
 
 
@@ -14,7 +15,7 @@ export default class PerRoundControl extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
-                <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
                     <ThreeIconButton
                         text={`Hit all ${THROWS_PER_ROUND}`}
                         style={styles.roundButton}
@@ -22,6 +23,7 @@ export default class PerRoundControl extends Component {
                         onPress={() => this.props.onHitAllThisRound()}
                     />
                 </View>
+                <Text>wtf</Text>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
                     {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
                         <ThreeIconButton
@@ -34,6 +36,7 @@ export default class PerRoundControl extends Component {
                         />
                     )}
                 </View>
+                <Text>wtf</Text>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
                     {[...new Array(THROWS_PER_ROUND)].map((x, index) =>
                         <ThreeIconButton
@@ -45,7 +48,7 @@ export default class PerRoundControl extends Component {
                         />
                     )}
                 </View>
-                <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-between"}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
                     <ThreeIconButton
                         text={`Miss all ${THROWS_PER_ROUND}`}
                         style={styles.roundButton}
@@ -59,5 +62,5 @@ export default class PerRoundControl extends Component {
 };
 
 let styles = {
-    roundButton: {backgroundColor: "#ccffcc", flex: 1, height: "45%", marginLeft: 5, marginRight: 5},
+    roundButton: {backgroundColor: "#ccffcc", flex: 1},
 };

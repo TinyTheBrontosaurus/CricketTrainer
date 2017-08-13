@@ -26,7 +26,7 @@ export default class CricketTrainer extends Component {
                     <Board scoreboard={this.state.scoreboard} onHit={() => {this.hit()}}/>
                 </View>
                 <View style={{flex: 2, flexDirection: 'column', marginRight: "3%", marginLeft: "1.5%"}}>
-                    <View style={{flex: 1, marginTop: "3%", martinTop: "3%"}}>
+                    <View style={{flex: 2, marginTop: "3%", martinTop: "3%"}}>
                         <PerThrowControl
                             onHit={() => {this.hit()}}
                             onMiss={() => {this.miss()}}
