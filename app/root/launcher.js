@@ -22,11 +22,11 @@ export default class CricketTrainer extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'row'}}>
-                <View style={{flex: 1}}>
+                <View style={{flex: 1, marginLeft: "3%", marginRight: "1.5%"}}>
                     <Board scoreboard={this.state.scoreboard} onHit={() => {this.hit()}}/>
                 </View>
-                <View style={{flex: 2, flexDirection: 'column'}}>
-                    <View style={{flex: 1}}>
+                <View style={{flex: 2, flexDirection: 'column', marginRight: "3%", marginLeft: "1.5%"}}>
+                    <View style={{flex: 1, marginTop: "3%", martinTop: "3%"}}>
                         <PerThrowControl
                             onHit={() => {this.hit()}}
                             onMiss={() => {this.miss()}}

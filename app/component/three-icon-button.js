@@ -47,5 +47,5 @@ export default class ThreeIconButton extends Component {
 };
 
 let styles = {
-    iconSize: 25
+    iconSize: 20
 };

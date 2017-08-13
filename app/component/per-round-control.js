@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {THROWS_PER_ROUND} from "../model/round"
 import ThreeIconButton from "../component/three-icon-button.js"
-import Button from 'apsl-react-native-button'
 import {
     View,
-    Text
 } from 'react-native';
 
 
@@ -63,5 +60,4 @@ export default class PerRoundControl extends Component {
 
 let styles = {
     roundButton: {backgroundColor: "#ccffcc", flex: 1, height: "45%", marginLeft: 5, marginRight: 5},
-    iconSize: 25
 };
