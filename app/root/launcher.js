@@ -7,6 +7,7 @@ import Scoreboard from '../model/scoreboard.js';
 import Board from '../component/board.js';
 import Control from '../component/control.js';
 import PerThrowControl from '../component/per-throw-control.js';
+import PerRoundControl from '../component/per-round-control.js';
 import Stats from '../component/stats.js';
 import { Col, Grid } from "react-native-easy-grid";
 
@@ -30,6 +31,12 @@ export default class CricketTrainer extends Component {
                         onHit={() => {this.hit()}}
                         onMiss={() => {this.miss()}}
                     />
+                    <PerRoundControl
+                         onHitAllThisRound={() => {this.hitAllThisRound()}}
+                         onMissOneThisRound={(index) => (this.missOneThisRound(index))}
+                         onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
+                         onMissRestOfRound={() => {this.missRestOfRound()}}/>
+
                     <Control onHit={() => {this.hit()}}
                              onMiss={() => {this.miss()}}
                              onHitAllThisRound={() => {this.hitAllThisRound()}}
