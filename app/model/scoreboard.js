@@ -1,5 +1,5 @@
 import Target from './target.js';
-import Round from './round.js';
+import Round, {THROWS_PER_ROUND} from './round.js';
 let _ = require('lodash');
 
 
@@ -39,6 +39,7 @@ export default class Scoreboard {
                 }
             }
         }
+
         return this;
     }
 
@@ -51,6 +52,7 @@ export default class Scoreboard {
         if(!this.isDone()) {
             this._round.nextDart();
         }
+
         return this;
     }
 
@@ -63,7 +65,83 @@ export default class Scoreboard {
         if(!this.isDone()) {
             this._round.nextRound();
         }
+
         return this;
+    }
+
+    /**
+     * Mark that there were all hits this round. Assumes start with a fresh round
+     * @returns {Scoreboard} this, for chaining
+     */
+    fullRoundHitAll() {
+        if(this.canPlayFullRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                this.hit();
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * Mark that there were all misses this round. Assumes start with a fresh round
+     * @returns {Scoreboard} this, for chaining
+     */
+    fullRoundMissAll() {
+        if(this.canPlayFullRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                this.miss();
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * Mark that there was only one miss this round (with the rest as hits). Assumes start with a fresh round
+     * @param dartMissed The index of the dart that missed
+     * @returns {Scoreboard} this, for chaining
+     */
+    fullRoundMissOne(dartMissed) {
+        if(this.canPlayFullRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                if(dart === dartMissed) {
+                    this.miss();
+                }
+                else {
+                    this.hit();
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * Mark that there was only one hit this round (with the rest as misses. Assumes start with a fresh round
+     * @param dartMissed The index of the dart that missed
+     * @returns {Scoreboard} this, for chaining
+     */
+    fullRoundHitOne(dartMissed) {
+        if(this.canPlayFullRound()) {
+            for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
+                if(dart !== dartMissed) {
+                    this.miss();
+                }
+                else {
+                    this.hit();
+                }
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * @returns {boolean} True if a "Full Round" method can be called
+     */
+    canPlayFullRound() {
+        return this._round.isFreshRound();
     }
 
     /**
@@ -116,8 +194,8 @@ export default class Scoreboard {
         let totalThrows = this._round.getTotalThrows();
         let hitsPerRound = null;
         let completedRounds = this._round.getCompletedRounds();
-        if(completedRounds) {
-            hitsPerRound = hitCount / completedRounds;
+        if(totalThrows) {
+            hitsPerRound = hitCount / totalThrows * THROWS_PER_ROUND;
         }
 
         return {

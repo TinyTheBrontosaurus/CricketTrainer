@@ -13,6 +13,7 @@ test('constructor', () => {
     expect(object_under_test.isDone()).toBe(false);
     expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0));
     expect(object_under_test.getTargetLabels()).toEqual(['20', '18', '19', '17', '16', '15', 'B']);
+    expect(object_under_test.getTargets()[0]).toEqual(new Target('20', 0));
     expect(object_under_test.getStats()).toEqual({
         hitCount: 0,
         missCount: 0,
@@ -41,7 +42,7 @@ test('one hit', () => {
         totalThrows: 1,
         completedRounds: 0,
         currentRound: new Round(0, 1),
-        hitsPerRound: null
+        hitsPerRound: 3
     });
     expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });
@@ -95,7 +96,7 @@ test('one miss', () => {
         totalThrows: 1,
         completedRounds: 0,
         currentRound: new Round(0, 1),
-        hitsPerRound: null
+        hitsPerRound: 0
     });
     expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });
@@ -214,12 +215,12 @@ test('Finish off hits and misses', () => {
         totalThrows: 41,
         completedRounds: 13,
         currentRound: new Round(13, 2),
-        hitsPerRound: 1.6153846153846154
+        hitsPerRound: 1.5365853658536586
     });
     expect(object_under_test.getRound()).toEqual(new Round(13, 2));
 });
 
-test('Finish off hits and missx3s', () => {
+test('Finish off hits and missxRestOfRounds', () => {
     // Arrange
     let object_under_test = new Scoreboard();
 
@@ -239,7 +240,147 @@ test('Finish off hits and missx3s', () => {
         totalThrows: 61,
         completedRounds: 20,
         currentRound: new Round(20, 1),
-        hitsPerRound: 1.05
+        hitsPerRound: 1.0327868852459017
     });
     expect(object_under_test.getRound()).toEqual(new Round(20, 1));
+});
+
+test('One-hit round', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.fullRoundHitOne(0);
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 1, [{round: new Round(0, 1)}]));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 1,
+        missCount: 2,
+        totalThrows: 3,
+        completedRounds: 1,
+        currentRound: new Round(1, 0),
+        hitsPerRound: 1
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
+});
+
+test('One-miss rounds', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.fullRoundMissOne(0);
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 2, [{round: new Round(0, 2)},
+                                                                             {round: new Round(1, 0)}]));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 2,
+        missCount: 1,
+        totalThrows: 3,
+        completedRounds: 1,
+        currentRound: new Round(1, 0),
+        hitsPerRound: 2
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
+});
+
+test('Hit-all rounds', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.fullRoundHitAll();
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('18', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 3,
+        missCount: 0,
+        totalThrows: 3,
+        completedRounds: 1,
+        currentRound: new Round(1, 0),
+        hitsPerRound: 3
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
+});
+
+test('Miss-all rounds', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.fullRoundMissAll();
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 0,
+        missCount: 3,
+        totalThrows: 3,
+        completedRounds: 1,
+        currentRound: new Round(1, 0),
+        hitsPerRound: 0
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(1, 0));
+});
+
+test('Chaining single-function rounds', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.fullRoundMissOne(0)
+        .fullRoundMissOne(1)
+        .fullRoundMissOne(2)
+        .fullRoundHitOne(0)
+        .fullRoundHitOne(1)
+        .fullRoundHitOne(2);
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('17', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 9,
+        missCount: 9,
+        totalThrows: 18,
+        completedRounds: 6,
+        currentRound: new Round(6, 0),
+        hitsPerRound: 1.5
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(6, 0));
+});
+
+test('Chaining single-function rounds when not on round border', () => {
+    // Arrange
+    let object_under_test = new Scoreboard();
+
+    // Act
+    object_under_test.miss()
+        .fullRoundMissOne(0)
+        .fullRoundMissOne(1)
+        .fullRoundMissOne(2)
+        .fullRoundHitOne(0)
+        .fullRoundHitOne(1)
+        .fullRoundHitOne(2)
+        .fullRoundHitAll()
+        .fullRoundMissAll();
+
+    // Assert
+    expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0, []));
+    expect(object_under_test.isDone()).toBe(false);
+    expect(object_under_test.getStats()).toEqual({
+        hitCount: 0,
+        missCount: 1,
+        totalThrows: 1,
+        completedRounds: 0,
+        currentRound: new Round(0, 1),
+        hitsPerRound: 0
+    });
+    expect(object_under_test.getRound()).toEqual(new Round(0, 1));
 });

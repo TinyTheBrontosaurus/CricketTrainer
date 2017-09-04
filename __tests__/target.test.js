@@ -9,7 +9,7 @@ test('constructor', () => {
 
     // Assert
     expect(object_under_test.hits()).toBe(0);
-    expect(object_under_test.getDoneRound()).toBe(null);
+    expect(object_under_test.getClosedRound()).toBe(null);
     expect(object_under_test.isDone()).toBe(false);
     expect(object_under_test.getMilestones()).toEqual([]);
 });
@@ -23,7 +23,7 @@ test('basic increment', () => {
 
     // Assert
     expect(object_under_test.hits()).toBe(1);
-    expect(object_under_test.getDoneRound()).toBe(null);
+    expect(object_under_test.getClosedRound()).toBe(null);
     expect(object_under_test.isDone()).toBe(false);
     expect(object_under_test.getMilestones()).toEqual([{round: 1}]);
 });
@@ -38,7 +38,7 @@ test('increment 2x', () => {
 
     // Assert
     expect(object_under_test.hits()).toBe(2);
-    expect(object_under_test.getDoneRound()).toBe(null);
+    expect(object_under_test.getClosedRound()).toBe(null);
     expect(object_under_test.isDone()).toBe(false);
     expect(object_under_test.getMilestones()).toEqual([{round: 1}, {round: 2}]);
 });
@@ -54,7 +54,7 @@ test('increment 3x', () => {
 
     // Assert
     expect(object_under_test.hits()).toBe(3);
-    expect(object_under_test.getDoneRound()).toEqual(3);
+    expect(object_under_test.getClosedRound()).toEqual(3);
     expect(object_under_test.isDone()).toBe(true);
     expect(object_under_test.getMilestones()).toEqual([{round: 1}, {round: 2}, {round: 3}]);
 });
@@ -69,7 +69,7 @@ test('increment 4x', () => {
     // Assert
     expect(() => {object_under_test.markHit({round: 4})}).toThrow();
     expect(object_under_test.hits()).toBe(3);
-    expect(object_under_test.getDoneRound()).toEqual(3);
+    expect(object_under_test.getClosedRound()).toEqual(3);
     expect(object_under_test.isDone()).toBe(true);
     expect(object_under_test.getMilestones()).toEqual([{round: 1}, {round: 2}, {round: 3}]);
 

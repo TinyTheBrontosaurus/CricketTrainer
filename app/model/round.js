@@ -1,4 +1,4 @@
-const THROWS_PER_ROUND = 3;
+export const THROWS_PER_ROUND = 3;
 
 /**
  * Keeps track of the round of darts, where there is an integer round, made up of an integer number
@@ -57,5 +57,19 @@ export default class Round {
      */
     getCompletedRounds() {
         return this._roundsCompleted;
+    }
+
+    /**
+     * @returns {*|number} The number of darts thrown this round (0, 1, or 2 for a 3-throw round)
+     */
+    getDartsThrownThisRound() {
+        return this._dartsThrown;
+    }
+
+    /**
+     * @returns {boolean} True if this is the beginning of a round (no darts thrown). False otherwise
+     */
+    isFreshRound() {
+        return this._dartsThrown === 0;
     }
 }
