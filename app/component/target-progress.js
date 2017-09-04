@@ -32,7 +32,7 @@ export default class TargetProgress extends Component {
                 <Text>{this.getHitsSymbol()}</Text>
             </Col>
             <Col size={1}>
-                <Text>{(this.props.cleared || "-").toString()}</Text>
+                <Text>{(this.props.closedRound || "-").toString()}</Text>
             </Col>
         </Grid>
     }

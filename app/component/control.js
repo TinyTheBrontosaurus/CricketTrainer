@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {THROWS_PER_ROUND} from "../model/round"
-import { Row,Col,  Grid } from "react-native-easy-grid";
+import {Row, Col,  Grid} from "react-native-easy-grid";
 import {
     Button
 } from 'react-native';

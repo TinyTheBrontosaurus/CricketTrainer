@@ -45,7 +45,7 @@ export default class Board extends Component {
               <Row key={targeti}>
                   <TargetProgress label={target.getLabel()}
                                 hits={target.hits()}
-                                cleared={target.getDoneRound()}
+                                closedRound={target.getClosedRound()}
                                 callback={callback}
                                 disabled={disabled}
                                 />

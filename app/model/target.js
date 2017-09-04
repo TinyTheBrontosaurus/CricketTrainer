@@ -47,9 +47,9 @@ export default class Target {
     }
 
     /**
-     * @returns {null} The Round object in which this target was completed, or null if not yet completed
+     * @returns {null} The Round object in which this target was closed, or null if not yet closed
      */
-    getDoneRound() {
+    getClosedRound() {
         if(this.isDone()) {
             return this._milestones[MAX_HITS - 1].round;
         }
