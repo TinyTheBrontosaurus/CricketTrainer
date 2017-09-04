@@ -73,8 +73,8 @@ export default class Scoreboard {
      * Mark that there were all hits this round. Assumes start with a fresh round
      * @returns {Scoreboard} this, for chaining
      */
-    hitAllThisRound() {
-        if(this._round.isFreshRound()) {
+    fullRoundHitAll() {
+        if(this.canPlayFullRound()) {
             for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
                 this.hit();
             }
@@ -87,8 +87,8 @@ export default class Scoreboard {
      * Mark that there were all misses this round. Assumes start with a fresh round
      * @returns {Scoreboard} this, for chaining
      */
-    missAllThisRound() {
-        if(this._round.isFreshRound()) {
+    fullRoundMissAll() {
+        if(this.canPlayFullRound()) {
             for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
                 this.miss();
             }
@@ -102,8 +102,8 @@ export default class Scoreboard {
      * @param dartMissed The index of the dart that missed
      * @returns {Scoreboard} this, for chaining
      */
-    missOneThisRound(dartMissed) {
-        if(this._round.isFreshRound()) {
+    fullRoundMissOne(dartMissed) {
+        if(this.canPlayFullRound()) {
             for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
                 if(dart === dartMissed) {
                     this.miss();
@@ -122,8 +122,8 @@ export default class Scoreboard {
      * @param dartMissed The index of the dart that missed
      * @returns {Scoreboard} this, for chaining
      */
-    hitOneThisRound(dartMissed) {
-        if(this._round.isFreshRound()) {
+    fullRoundHitOne(dartMissed) {
+        if(this.canPlayFullRound()) {
             for(let dart = 0; dart < THROWS_PER_ROUND; dart++) {
                 if(dart !== dartMissed) {
                     this.miss();
@@ -135,6 +135,13 @@ export default class Scoreboard {
         }
 
         return this;
+    }
+
+    /**
+     * @returns {boolean} True if a "Full Round" method can be called
+     */
+    canPlayFullRound() {
+        return this._round.isFreshRound();
     }
 
     /**

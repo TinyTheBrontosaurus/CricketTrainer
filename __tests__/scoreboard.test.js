@@ -250,7 +250,7 @@ test('One-hit round', () => {
     let object_under_test = new Scoreboard();
 
     // Act
-    object_under_test.hitOneThisRound(0);
+    object_under_test.fullRoundHitOne(0);
 
     // Assert
     expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 1, [{round: new Round(0, 1)}]));
@@ -271,7 +271,7 @@ test('One-miss rounds', () => {
     let object_under_test = new Scoreboard();
 
     // Act
-    object_under_test.missOneThisRound(0);
+    object_under_test.fullRoundMissOne(0);
 
     // Assert
     expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 2, [{round: new Round(0, 2)},
@@ -293,7 +293,7 @@ test('Hit-all rounds', () => {
     let object_under_test = new Scoreboard();
 
     // Act
-    object_under_test.hitAllThisRound();
+    object_under_test.fullRoundHitAll();
 
     // Assert
     expect(object_under_test.getActiveTarget()).toEqual(new Target('18', 0, []));
@@ -314,7 +314,7 @@ test('Miss-all rounds', () => {
     let object_under_test = new Scoreboard();
 
     // Act
-    object_under_test.missAllThisRound();
+    object_under_test.fullRoundMissAll();
 
     // Assert
     expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0, []));
@@ -335,12 +335,12 @@ test('Chaining single-function rounds', () => {
     let object_under_test = new Scoreboard();
 
     // Act
-    object_under_test.missOneThisRound(0)
-        .missOneThisRound(1)
-        .missOneThisRound(2)
-        .hitOneThisRound(0)
-        .hitOneThisRound(1)
-        .hitOneThisRound(2);
+    object_under_test.fullRoundMissOne(0)
+        .fullRoundMissOne(1)
+        .fullRoundMissOne(2)
+        .fullRoundHitOne(0)
+        .fullRoundHitOne(1)
+        .fullRoundHitOne(2);
 
     // Assert
     expect(object_under_test.getActiveTarget()).toEqual(new Target('17', 0, []));
@@ -362,14 +362,14 @@ test('Chaining single-function rounds when not on round border', () => {
 
     // Act
     object_under_test.miss()
-        .missOneThisRound(0)
-        .missOneThisRound(1)
-        .missOneThisRound(2)
-        .hitOneThisRound(0)
-        .hitOneThisRound(1)
-        .hitOneThisRound(2)
-        .hitAllThisRound()
-        .missAllThisRound();
+        .fullRoundMissOne(0)
+        .fullRoundMissOne(1)
+        .fullRoundMissOne(2)
+        .fullRoundHitOne(0)
+        .fullRoundHitOne(1)
+        .fullRoundHitOne(2)
+        .fullRoundHitAll()
+        .fullRoundMissAll();
 
     // Assert
     expect(object_under_test.getActiveTarget()).toEqual(new Target('20', 0, []));

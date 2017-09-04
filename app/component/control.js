@@ -34,10 +34,11 @@ export default class Control extends Component {
             </Row>
             <Row>
                 <Button
-                    onPress={this.props.onHitAllThisRound}
+                    onPress={this.props.fullRoundHitAll}
                     title={"Hit all"}
                     accessibilityLabel={"Hit all"}
                     color="#841584"
+                    disabled={!this.props.canPlayFullRound}
                 />
             </Row>
             <Row>
@@ -45,10 +46,11 @@ export default class Control extends Component {
                     <Col key={`MissOnceCol${index}`}>
 
                         <Button
-                            onPress={() => this.props.onMissOneThisRound(index)}
+                            onPress={() => this.props.fullRoundMissOne(index)}
                             title={`Miss #${index + 1}`}
                             accessibilityLabel={`Miss #${index + 1}`}
                             color="#841584"
+                            disabled={!this.props.canPlayFullRound}
                         />
                     </Col>
                 )}
@@ -58,17 +60,18 @@ export default class Control extends Component {
                     <Col key={`HitOnceCol${index}`}>
 
                         <Button
-                            onPress={() => this.props.onHitOneThisRound(index)}
+                            onPress={() => this.props.fullRoundHitOne(index)}
                             title={`Hit #${index + 1}`}
                             accessibilityLabel={`Hit #${index + 1}`}
                             color="#841584"
+                            disabled={!this.props.canPlayFullRound}
                         />
                     </Col>
                 )}
             </Row>
             <Row>
                 <Button
-                    onPress={this.props.onMissRestOfRound}
+                    onPress={this.props.missRestOfRound}
                     title={"Miss rest"}
                     accessibilityLabel={"Miss rest of round"}
                     color="#841584"

@@ -11,7 +11,8 @@ import { Col, Grid } from "react-native-easy-grid";
 
 
 /**
- * The full board for crickets, including all the targets, the control board, and the statistics
+ * The full board for crickets, including all the targets, the control board, and the statistics. Note
+ * that the hitOne/missOne methods assume there are three darts
  */
 export default class CricketTrainer extends Component {
     constructor(props) {
@@ -27,10 +28,11 @@ export default class CricketTrainer extends Component {
                 <Col size={1}>
                     <Control onHit={() => {this.hit()}}
                              onMiss={() => {this.miss()}}
-                             onHitAllThisRound={() => {this.hitAllThisRound()}}
-                             onMissOneThisRound={(index) => (this.missOneThisRound(index))}
-                             onHitOneThisRound={(index) => (this.hitOneThisRound(index))}
-                             onMissRestOfRound={() => {this.missRestOfRound()}}/>
+                             fullRoundHitAll={() => {this.fullRoundHitAll()}}
+                             fullRoundMissOne={(index) => (this.fullRoundMissOne(index))}
+                             fullRoundHitOne={(index) => (this.fullRoundHitOne(index))}
+                             missRestOfRound={() => {this.missRestOfRound()}}
+                             canPlayFullRound={this.state.scoreboard.canPlayFullRound()}/>
                     <Stats stats={this.state.scoreboard.getStats()} />
                 </Col>
             </Grid>
@@ -38,7 +40,7 @@ export default class CricketTrainer extends Component {
     }
 
     /**
-     * Mark a hit and update the state
+     * Mark a single hit and update the state
      */
     hit() {
         let scoreboard = this.state.scoreboard;
@@ -48,7 +50,7 @@ export default class CricketTrainer extends Component {
     }
 
     /**
-     * Mark a miss and update the state
+     * Mark a single miss and update the state
      */
     miss() {
         let scoreboard = this.state.scoreboard;
@@ -60,27 +62,27 @@ export default class CricketTrainer extends Component {
     /**
      * Mark a round as having hit all, and update the state
      */
-    hitAllThisRound() {
+    fullRoundHitAll() {
         let scoreboard = this.state.scoreboard;
-        scoreboard.hitAllThisRound();
+        scoreboard.fullRoundHitAll();
         this.setState({scoreboard: scoreboard});
     }
 
     /**
      * Mark a round as having missed one, and update the state
      */
-    missOneThisRound(index) {
+    fullRoundMissOne(index) {
         let scoreboard = this.state.scoreboard;
-        scoreboard.missOneThisRound(index);
+        scoreboard.fullRoundMissOne(index);
         this.setState({scoreboard: scoreboard});
     }
 
     /**
      * Mark a round as having hit one, and update the state
      */
-    hitOneThisRound(index) {
+    fullRoundHitOne(index) {
         let scoreboard = this.state.scoreboard;
-        scoreboard.hitOneThisRound(index);
+        scoreboard.fullRoundHitOne(index);
         this.setState({scoreboard: scoreboard});
     }
 
