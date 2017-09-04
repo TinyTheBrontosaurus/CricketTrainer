@@ -71,9 +71,9 @@ export default class Control extends Component {
             </Row>
             <Row>
                 <Button
-                    onPress={this.props.missRestOfRound}
-                    title={"Miss rest"}
-                    accessibilityLabel={"Miss rest of round"}
+                    onPress={this.props.fullRoundMissAll}
+                    title={"Miss all"}
+                    accessibilityLabel={"Miss all"}
                     color="#841584"
                 />
             </Row>

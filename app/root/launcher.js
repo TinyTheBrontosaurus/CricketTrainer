@@ -31,7 +31,7 @@ export default class CricketTrainer extends Component {
                              fullRoundHitAll={() => {this.fullRoundHitAll()}}
                              fullRoundMissOne={(index) => (this.fullRoundMissOne(index))}
                              fullRoundHitOne={(index) => (this.fullRoundHitOne(index))}
-                             missRestOfRound={() => {this.missRestOfRound()}}
+                             fullRoundMissAll={() => {this.fullRoundMissAll()}}
                              canPlayFullRound={this.state.scoreboard.canPlayFullRound()}/>
                     <Stats stats={this.state.scoreboard.getStats()} />
                 </Col>
@@ -87,13 +87,12 @@ export default class CricketTrainer extends Component {
     }
 
     /**
-     * Show that the rest of teh round (or the entire round) is misses; update the state
+     * Mark a round as having missed all, and update the state
      */
-    missRestOfRound() {
+    fullRoundMissAll() {
         let scoreboard = this.state.scoreboard;
-        scoreboard.missRestOfRound();
+        scoreboard.fullRoundMissAll();
         this.setState({scoreboard: scoreboard});
-
     }
 };
 
